@@ -20,9 +20,13 @@ class Display
       puts "error" #learn how to raise error
     else
       puts @a
+      binding.pry
     end
   end
 
 end
 
 Display.new.by_time_section
+# [3] pry(#<Display>)> @a.each do |key, value|
+# [3] pry(#<Display>)*   puts key or value
+# [3] pry(#<Display>)* end
