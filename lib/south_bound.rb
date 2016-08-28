@@ -18,10 +18,11 @@ class SorthBound
 
     end
 
-    sb_vehicles
+    sb_vehicles #returned result
     # binding.pry
   end
 
 end
 
+# 11276
 # SorthBound.new.isolate_SB_vehicles_B

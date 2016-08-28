@@ -22,10 +22,11 @@ class NorthBound
 
     end
 
-    nb_vehicles
+    nb_vehicles #returned result
     # binding.pry
   end
 
 end
 
+# 11096
 # NorthBound.new.isolate_NB_vehicles_A
