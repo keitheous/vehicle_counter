@@ -2,7 +2,6 @@ require 'pry'
 require_relative 'data_source'
 
 class NorthBound
-  attr_accessor :nb_vehicles
 
   def isolate_NB_vehicles_A
     nb_vehicles = []
@@ -11,7 +10,7 @@ class NorthBound
 
     all_vehicle_data.each_with_index do |line, index| #iterate through the list
 
-      if (index % 2 == 0) #process two lines at a time starting from 0-1, 2-3, etc
+      if index % 2 == 0 #process two lines at a time starting from 0-1, 2-3, etc
 
         if all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
           # filtering all AA patterns NOT ABAB

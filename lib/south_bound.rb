@@ -2,7 +2,6 @@ require 'pry'
 require_relative 'data_source'
 
 class SorthBound
-  attr_accessor :sb_vehicles
 
   def isolate_SB_vehicles_B
     sb_vehicles = []
