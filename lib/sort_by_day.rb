@@ -1,7 +1,6 @@
 require 'pry'
 require_relative 'south_bound'
 require_relative 'north_bound'
-# require_relative 'south_bound'
 
 class Sorting #sort into days and axle pairs
 
