@@ -1,5 +1,5 @@
 require 'pry'
-require './data_source'
+require_relative 'data_source'
 
 class NorthBound
   attr_accessor :nb_vehicles
@@ -24,8 +24,9 @@ class NorthBound
     end
 
     nb_vehicles
+    # binding.pry
   end
 
 end
 
-NorthBound.new.isolate_NB_vehicles_A
+# NorthBound.new.isolate_NB_vehicles_A

@@ -1,8 +1,6 @@
 require 'pry'
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
-#is this necessary?
-# require_relative '../lib/data_reader_2'
 require_relative '../lib/data_source'
 require "minitest/pride"
 

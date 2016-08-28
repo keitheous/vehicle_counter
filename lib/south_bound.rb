@@ -1,7 +1,7 @@
 require 'pry'
-require './data_source'
+require_relative 'data_source'
 
-class NorthBound
+class SorthBound
   attr_accessor :sb_vehicles
 
   def isolate_SB_vehicles_B
@@ -20,8 +20,9 @@ class NorthBound
     end
 
     sb_vehicles
+    # binding.pry
   end
 
 end
 
-# NorthBound.new.isolate_SB_vehicles_B
+# SorthBound.new.isolate_SB_vehicles_B
