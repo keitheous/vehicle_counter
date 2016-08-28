@@ -10,10 +10,10 @@ class NorthBoundTest < Minitest::Test
     north_vehicles = NorthBound.new.isolate_NB_vehicles_A
   assert_equal true, north_vehicles.respond_to?(:to_a)
   end
-  
+
   def test_successful_nb_vehicles_population
     north_vehicles = NorthBound.new.isolate_NB_vehicles_A
-  assert_equal true, north_vehicles.size > 0
+  assert_equal true, north_vehicles.size != 0
   end
 
 end
