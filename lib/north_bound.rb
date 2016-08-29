@@ -14,7 +14,8 @@ class NorthBound
 
         if all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
           # filtering all AA patterns NOT ABAB
-          nb_vehicles << all_vehicle_data[index] << all_vehicle_data[index+1]
+          nb_vehicles.push(all_vehicle_data[index])
+          nb_vehicles.push(all_vehicle_data[index+1])
           # 1st A = first Axle, 2nd A = second Axle, store in sequential order
         end
 

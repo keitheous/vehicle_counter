@@ -1,6 +1,7 @@
 require 'pry'
 require_relative 'south_bound'
 require_relative 'north_bound'
+require 'time'
 
 class Sorting #sort into days and axle pairs
 
@@ -24,16 +25,16 @@ class Sorting #sort into days and axle pairs
 
         # 1st no. in pair represent 1st axle while 2nd no. represent 2nd axle
         axle_one = line.delete('^0-9').strip.to_i / 1000.000
-        axle_one_t = Time.at(axle_one)
+        axle_one_t = Time.at(axle_one).utc
 
         axle_two = the_array[index+1].delete('^0-9').strip.to_i / 1000.000
-        axle_two_t = Time.at(axle_two)
+        axle_two_t = Time.at(axle_two).utc
 
         # axle_diff is the difference between the two - to determine speed
         axle_diff = (axle_two - axle_one).round(4)
 
         # storing all dets into temporary storage
-        per_vehicle_dets << day << axle_one_t << axle_two_t << axle_diff
+        per_vehicle_dets << day << axle_one_t << index << axle_two_t << index+1 << axle_diff
         # puts "#{axle_one_t.hour} - #{axle_two_t.hour} - #{day} - #{axle_diff}s"
 
         # assign temp storage into per_bound_vehicles with key vehicle
