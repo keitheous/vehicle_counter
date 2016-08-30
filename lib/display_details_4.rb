@@ -14,7 +14,7 @@ class Display
     # @num_days = bound_subject[bound_subject.length][0]
     # puts bound_subject
     @num_days = 1
-    @minutes = 15
+    @minutes = 20
     @sections = 60 / minutes
   end
 
@@ -34,14 +34,22 @@ class Display
         lower_limit = 0 #resets every hour, the clock starts at 00 minutes - lower sectioning
         upper_limit = minutes - 1 #upper sectioning
         stored_hourly = daily_subject_hash.select{|hourly_key, hourly_value| hourly_value[1].hour == hour}
-        stored_hourly.each do |key, value|
 
-          # if value[1].hour == hour && value[1].min.between?(lower_limit,upper_limit)
-          #   puts "#{key} -> #{value[1].hour}:#{value[1].min} falls in  #{value[1].hour}:#{lower_limit}"
-          # end
+        (1..sections).each do |section| #split the evaluation into the sections
 
-          puts  "#{key}:#{value}"
-        end
+          stored_hourly.each do |key, value| #now assess every minutely
+
+            if value[1].hour == hour && value[1].min.between?(lower_limit,upper_limit)
+              puts "#{key} -> #{value[1].hour}:#{value[1].min} falls in  #{value[1].hour}:#{lower_limit}"
+            end #end of if stament
+
+          end #end of minutely iteration
+
+          lower_limit += minutes
+          upper_limit += minutes
+          #increase the limits based on sections
+        end #end of sections iteration
+
       end #end for hourly iteration
 
     end #end for daily iteration
