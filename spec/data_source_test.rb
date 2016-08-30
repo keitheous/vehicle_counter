@@ -8,7 +8,7 @@ class DataSourceTest < Minitest::Test
 
   def test_that_dataset_exist
     data = Source.new.locate_data
-  assert_equal true, data.size > 0
+    assert_equal true, data.size > 0
   end
 
 end
