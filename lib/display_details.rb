@@ -20,7 +20,6 @@ class Display
     # @num_days can be adjustable if this was scalable - choose how many days to display
     @minutes = min_user_input
     @sections = 60 / min_user_input
-
   end
 
   def by_time_section
@@ -52,7 +51,7 @@ class Display
 
           end #end of minutely iteration
           #store the count and store individually
-          hourly_results["From #{hour}:#{lower_limit}"] = sectionly_frequency.count
+          hourly_results["#{hour}:#{lower_limit}"] = sectionly_frequency.count
           lower_limit += minutes    #increase the limits based on sections
           upper_limit += minutes
 
