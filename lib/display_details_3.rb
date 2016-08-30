@@ -26,17 +26,26 @@ class Display
       puts "evaluating day #{day}"
       # processing bound_subject one day at a time out of 5 days
       daily_subject_hash = bound_subject.select{|k, v| v[0] == day}
-      lower_limit = 0 #everyday, the clock starts at 00 minutes, sectioning limit
-      upper_limit = minutes - 1 # initial sectioning limit for display, increment later
+
       # do hourly first
       (00..01).each do |hour|
         puts "evaluating hour #{hour}"
         stored_hourly = daily_subject_hash.select{|k, v| v[1].hour == hour}
         stored_hourly.each do |key,value|
+          lower_limit = 0 #resets every hour, the clock starts at 00 minutes - lower sectioning
+          upper_limit = minutes - 1 # initial sectioning limit for display, increment later
 
           if value[1].min.between?(lower_limit,upper_limit)
-            puts "#{key} -> #{value[1].hour}:#{value[1].min} belongs to #{value[1].hour}:#{lower_limit} "
+            # puts "#{key} -> #{value[1].hour}:#{value[1].min} belongs to #{value[1].hour}:#{lower_limit} "
+            puts "#{lower_limit} < #{value[1].min} < #{upper_limit}"
           end #end for if statement
+
+          (sections-1).times do
+            lower_limit = lower_limit + minutes
+            upper_limit = upper_limit + minutes
+            # puts "ey"
+            binding.pry
+          end #end of times..
 
         end #end for minutely iteration
       end #end for hourly iteration
