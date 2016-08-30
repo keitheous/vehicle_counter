@@ -1,7 +1,7 @@
 require 'pry'
 require_relative 'data_source'
 
-class SorthBound
+class SouthBound
 
   def isolate_SB_vehicles_B
     sb_vehicles = []
@@ -25,4 +25,4 @@ class SorthBound
 end
 
 # 11276
-# SorthBound.new.isolate_SB_vehicles_B
+# SouthBound.new.isolate_SB_vehicles_B

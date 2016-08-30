@@ -52,9 +52,9 @@ class Compare
 
     end #end of day iteration
 
-    puts daily_comparision_score
+    daily_comparision_score
   end #end of method
 
 end #end of class
 
-Compare.new.between_morning_and_evening
+# Compare.new.between_morning_and_evening
