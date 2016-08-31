@@ -53,6 +53,6 @@ class Sorting #sort into days and axle pairs
 
 end
 
-# a = SorthBound.new.isolate_SB_vehicles_B
+# a = SouthBound.new.isolate_SB_vehicles_B
 # a = NorthBound.new.isolate_NB_vehicles_A
 # Sorting.new.into_hashes(a)

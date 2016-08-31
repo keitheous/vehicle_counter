@@ -12,7 +12,7 @@ class Display
     if bound == "nb"
       bound = NorthBound.new.isolate_NB_vehicles_A
     elsif bound == "sb"
-      bound = SorthBound.new.isolate_SB_vehicles_B
+      bound = SouthBound.new.isolate_SB_vehicles_B
     end
 
     @bound_subject = Sorting.new.into_hashes(bound)
@@ -70,7 +70,7 @@ class Display
 
 end #end of classs
 
-# Display.new("sb").by_time_section
+# Display.new.by_time_section
 # Display.new("sb",15).by_time_section
 # Display.new("sb",30).by_time_section
 # Display.new("sb",-6).by_time_section
