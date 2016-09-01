@@ -1,12 +1,14 @@
 require 'pry'
 require_relative 'data_source'
 
-class NorthBound
+class Bound
+  attr_reader :all_vehicle_data
+  def initialize
+    @all_vehicle_data = DataSource.new.locate
+  end
 
-  def isolate_AA
+  def north
     nb_vehicles = []
-
-    all_vehicle_data = DataSource.new.locate
 
     all_vehicle_data.each_with_index do |_, index|
 
@@ -17,15 +19,21 @@ class NorthBound
           nb_vehicles << all_vehicle_data[index] << all_vehicle_data[index+1]
           # 1st A = first Axle, 2nd A = second Axle, store in sequential order
         end
-
       end
-
     end
-
     nb_vehicles
   end
 
-end
+  def south
+    sb_vehicles = []
+    all_vehicle_data.each do |line|
+      if line[0] == "B"
+        # filtering all Bs
+        sb_vehicles << line
+        # store in sb vehicles array
+      end
+    end
+    sb_vehicles
+  end
 
-a = NorthBound.new
-puts a.isolate_AA
+end
