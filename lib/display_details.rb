@@ -51,6 +51,7 @@ class Display
 
           end #end of minutely iteration
           #store the count and store individually
+          binding.pry
           hourly_results["#{hour}:#{lower_limit}"] = sectionly_frequency.count
           lower_limit += minutes    #increase the limits based on sections
           upper_limit += minutes
@@ -70,7 +71,7 @@ class Display
 
 end #end of classs
 
-# Display.new.by_time_section
+Display.new.by_time_section
 # Display.new("sb",15).by_time_section
 # Display.new("sb",30).by_time_section
 # Display.new("sb",-6).by_time_section

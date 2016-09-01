@@ -34,7 +34,7 @@ class Sorting #sort into days and axle pairs
         axle_diff = (axle_two - axle_one).round(4)
 
         # storing all dets into temporary storage
-        per_vehicle_dets << day << axle_one_t << index << axle_two_t << index+1 << axle_diff
+        per_vehicle_dets << day << axle_one_t << index << axle_two_t << index+1 << axle_diff << axle_one
         # puts "#{axle_one_t.hour} - #{axle_two_t.hour} - #{day} - #{axle_diff}s"
 
         # assign temp storage into per_bound_vehicles with key vehicle

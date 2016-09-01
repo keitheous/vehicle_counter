@@ -7,13 +7,13 @@ require "minitest/pride"
 class SorthBoundTest < Minitest::Test
 
   def test_sb_vehicle_array_initialization
-    sorth_vehicles = SorthBound.new.isolate_SB_vehicles_B
-    assert_equal true, sorth_vehicles.respond_to?(:to_a)
+    south_vehicles = SouthBound.new.isolate_SB_vehicles_B
+    assert_equal true, south_vehicles.respond_to?(:to_a)
   end
 
   def test_successful_sb_vehicles_population
-    sorth_vehicles = SorthBound.new.isolate_SB_vehicles_B
-    assert_equal true, sorth_vehicles.size != 0
+    south_vehicles = SouthBound.new.isolate_SB_vehicles_B
+    assert_equal true, south_vehicles.size != 0
   end
 
 end
