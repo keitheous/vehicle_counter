@@ -3,19 +3,18 @@ require_relative 'data_source'
 
 class NorthBound
 
-  def isolate_NB_vehicles_A
+  def isolate_AA
     nb_vehicles = []
-    #initializing empty array to store ALL nb vehicles
-    all_vehicle_data = Source.new.locate_data
 
-    all_vehicle_data.each_with_index do |line, index| #iterate through the list
+    all_vehicle_data = DataSource.new.locate
+
+    all_vehicle_data.each_with_index do |_, index|
 
       if index % 2 == 0 #process two lines at a time starting from 0-1, 2-3, etc
 
         if all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
           # filtering all AA patterns NOT ABAB
-          nb_vehicles.push(all_vehicle_data[index])
-          nb_vehicles.push(all_vehicle_data[index+1])
+          nb_vehicles << all_vehicle_data[index] << all_vehicle_data[index+1]
           # 1st A = first Axle, 2nd A = second Axle, store in sequential order
         end
 
@@ -23,11 +22,10 @@ class NorthBound
 
     end
 
-    nb_vehicles #returned result
-    # binding.pry
+    nb_vehicles
   end
 
 end
 
-# 11096
-# NorthBound.new.isolate_NB_vehicles_A
+a = NorthBound.new
+puts a.isolate_AA
