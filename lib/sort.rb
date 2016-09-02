@@ -1,9 +1,8 @@
 require 'pry'
 require_relative 'bound'
-# require_relative 'north_bound'
 require 'time'
 
-class Sort#sort into days and first_axle pairs
+class Sort
   attr_reader :bound_arr
 
   def initialize(bound)
@@ -23,20 +22,16 @@ class Sort#sort into days and first_axle pairs
       if index % 2 == 0 # process a pair at a time 0-1, 2-3, 4-5, and etc
         first_axle = convert_data_to_s(line)
         first_axle_time = Time.at(first_axle).utc
-
         second_axle = convert_data_to_s(bound_arr[index+1])
         prev_veh_first_axle = convert_data_to_s(bound_arr[index-2])
         axles_diff = (second_axle - first_axle).round(2)
-
         axles_diff_frm_prev_veh = (first_axle - prev_veh_first_axle).round(2)
 
         bound_vehicles[veh_count] = [day, first_axle_time, first_axle, axles_diff, axles_diff_frm_prev_veh]
-
         veh_count += 1
       end
     end
     bound_vehicles
-    # binding.pry
   end
 
   private
@@ -48,5 +43,3 @@ class Sort#sort into days and first_axle pairs
     data_ms.delete('^0-9').strip.to_i / 1000.000
   end
 end
-
-# a = Sort.new("anything").into_pairs_by_day

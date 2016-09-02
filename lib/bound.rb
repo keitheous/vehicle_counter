@@ -11,14 +11,9 @@ class Bound
     nb_vehicles = []
 
     all_vehicle_data.each_with_index do |_, index|
-
       if index % 2 == 0 #process two lines at a time starting from 0-1, 2-3, etc
-
-        if all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
-          # filtering all AA patterns NOT ABAB
-          nb_vehicles << all_vehicle_data[index] << all_vehicle_data[index+1]
-          # 1st A = first Axle, 2nd A = second Axle, store in sequential order
-        end
+        nb_vehicles << all_vehicle_data[index] << all_vehicle_data[index+1] if all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
+          # filtering for AA patterns, store first Axle & second Axle in sequential order
       end
     end
     nb_vehicles
@@ -26,13 +21,8 @@ class Bound
 
   def south
     sb_vehicles = []
-    all_vehicle_data.each do |line|
-      if line[0] == "B"
-        # filtering all Bs
-        sb_vehicles << line
-        # store in sb vehicles array
-      end
-    end
+    all_vehicle_data.each { |line| sb_vehicles << line if line[0] == "B" }
+        # filtering all Bs & store in sb vehicles array
     sb_vehicles
   end
 
