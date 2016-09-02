@@ -50,5 +50,3 @@ class Times
     raise 'error' if amount < 0
   end
 end
-
-# Times.new.determine_peaks
