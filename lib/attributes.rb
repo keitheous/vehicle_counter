@@ -25,32 +25,30 @@ class Attributes
       weekly_speed_results[day] = {"m/s range" => "#{velocities_stored_per_day.min} - #{velocities_stored_per_day.max}", "m/s average" => "#{average_velocity}"}
     end
     weekly_speed_results
-    binding.pry
 
   end
 
-  def distance_apart
+  def distance_apart (begin_hour, end_hour)
+    check_hour_validity?(begin_hour, end_hour)
     weekly_distance_results = {}
-  #   periods_of_day = ["0,6","6,12","12,18","18,24"]
-  #
-  #
-    (1..num_days ).each do |day|
-      dist_arr = []
-      hour_distance_car = []
-
+    (1..num_days).each do |day|
+      desired_hourly_results = []
+      hourly_sum = 0
+      distance_arr = []
       subject_per_day = bound.select{ |index, data_value| data_value[0] == day }
       subject_per_day.each do |_, values|
-        # dist_arr << [values[4]
-        puts values[4]* traffic_speed_limit).round(2)
+        distance_arr << [(values[4]* traffic_speed_limit).round(2) , values[1].hour]
       end
-  #
-  #     dist_arr.each_with_index do |line, index|
-  #       hour_distance_car << ["Hour : #{line[1]}", "#{meters_in_between?((line[0] - dist_arr[index-1][0]))} meters" , "car number #{index+1}"]
-  #     end
-  #     weekly_distance_results[day] = hour_distance_car
-  #
+      distance_arr.each do |value|
+        if value[1].between?(begin_hour,end_hour)
+        desired_hourly_results << value[0]
+        hourly_sum += value[0]
+        end
+      end
+      average = (hourly_sum / desired_hourly_results.length).round(2)
+      weekly_distance_results[day] = "between hour #{begin_hour}-#{end_hour} ,distance range(m): #{ desired_hourly_results.min} - #{desired_hourly_results.max} with average(m): #{average} "
     end
-  #   binding.pry
+    weekly_distance_results
   end
   private
 
@@ -58,7 +56,11 @@ class Attributes
     nb_or_sb == "nb" ? Sort.new("nb").into_pairs_by_day : Sort.new("sb").into_pairs_by_day
   end
 
+  def check_hour_validity?(begin_hour, end_hour)
+    raise 'error' if !begin_hour.between?(0,23) || !end_hour.between?(0,23) || end_hour < begin_hour
+  end
+
 end
 
 # Attributes.new("sb").speed
-Attributes.new("sb").distance_apart
+# Attributes.new("sb").distance_apart(8,9)
