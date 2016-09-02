@@ -4,7 +4,7 @@ require_relative 'sort'
 class Displays
   attr_reader :bound, :num_days, :minutes, :sections
 
-  def initialize(which_bound, minute_user_input = 20)
+  def initialize(which_bound, minute_user_input = 60)
     valid_time_input?(minute_user_input)
     @bound = which_bound?(which_bound)
     @minutes = minute_user_input
@@ -12,7 +12,7 @@ class Displays
     @num_days = bound[bound.length][0]
   end
 
-  def by_time_section
+  def sort_sections
     sectioned_daily_results = {}
 
     (1..num_days).each do |day|
@@ -38,7 +38,6 @@ class Displays
       sectioned_daily_results[day] = sectioned_results
     end
     sectioned_daily_results
-    binding.pry
   end
 
   private
@@ -49,6 +48,3 @@ class Displays
     raise 'error' if (60 % user_input != 0 || user_input < 0)
   end
 end
-
-# Displays.new("nb").by_time_section
-# Displays.new("sb").by_time_section
