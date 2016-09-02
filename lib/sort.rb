@@ -45,8 +45,8 @@ class Sort#sort into days and first_axle pairs
   end
 end
 
-a = Sort.new("anything").into_pairs_by_day
-binding.pry
+# a = Sort.new("anything").into_pairs_by_day
+# binding.pry
 
 # for previous revisions
 # storing day, time for axle 1, data index, time for axle 2, next data index, difference between time and axle 1 data

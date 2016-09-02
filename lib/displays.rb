@@ -1,25 +1,23 @@
 require 'pry'
-require_relative 'sort_by_day'
+require_relative 'sort'
 
-class Display
-  attr_reader :bound_subject, :num_days, :minutes, :sections
+class Displays
+  attr_reader :bound, :num_days, :minutes, :sections
 
-  def initialize(bound = "nb", min_user_input = 60)
-    if 60 % min_user_input != 0 || min_user_input < 0
-      raise 'error'
+  def initialize(which_bound, minute_user_input)
+
+    valid_time_input?(minute_user_input)
+
+    if which_bound == "nb"
+      @bound = Sort.new("nb").into_pairs_by_day
+    elsif which_bound == "sb"
+      @bound = Sort.new("sb").into_pairs_by_day
     end
-
-    if bound == "nb"
-      bound = NorthBound.new.isolate_NB_vehicles_A
-    elsif bound == "sb"
-      bound = SouthBound.new.isolate_SB_vehicles_B
-    end
-
-    @bound_subject = Sorting.new.into_hashes(bound)
-    @num_days = bound_subject[bound_subject.length][0]
+    binding.pry
+    @num_days = bound[bound.length][0]
     # @num_days can be adjustable if this was scalable - choose how many days to display
-    @minutes = min_user_input
-    @sections = 60 / min_user_input
+    @minutes = minute_user_input
+    @sections = 60 / minute_user_input
   end
 
   def by_time_section
@@ -29,7 +27,7 @@ class Display
     (1..num_days).each do |day|
       # puts "evaluating day #{day}"
       # processing bound_subject one day at a time out of 5 days
-      daily_subject_hash = bound_subject.select{|daily_key, daily_value| daily_value[0] == day}
+      daily_subject_hash = bound.select{|daily_key, daily_value| daily_value[0] == day}
 
       hourly_results = {}
       # do hourly first
@@ -51,7 +49,7 @@ class Display
 
           end #end of minutely iteration
           #store the count and store individually
-          binding.pry
+          # binding.pry
           hourly_results["#{hour}:#{lower_limit}"] = sectionly_frequency.count
           lower_limit += minutes    #increase the limits based on sections
           upper_limit += minutes
@@ -69,9 +67,15 @@ class Display
     # binding.pry
   end #end for method
 
+  private
+
+  def valid_time_input?(user_input)
+    raise 'error' if (60 % user_input != 0 || user_input < 0)
+  end
+  # end
 end #end of classs
 
-Display.new.by_time_section
+Displays.new("nb",7).by_time_section
 # Display.new("sb",15).by_time_section
 # Display.new("sb",30).by_time_section
 # Display.new("sb",-6).by_time_section
