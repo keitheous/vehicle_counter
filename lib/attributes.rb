@@ -61,6 +61,3 @@ class Attributes
   end
 
 end
-
-# Attributes.new("sb").speed
-# Attributes.new("sb").distance_apart(8,9)
