@@ -23,16 +23,20 @@ class Sort#sort into days and first_axle pairs
       if index % 2 == 0 # process a pair at a time 0-1, 2-3, 4-5, and etc
         first_axle = convert_data_to_s(line)
         first_axle_time = Time.at(first_axle).utc
-        second_axle = convert_data_to_s(bound_arr[index+1])
-        # axle_two_t = Time.at(axle_two).utc ??????????
-        axles_difference = (second_axle - first_axle).round(4)
 
-        bound_vehicles[veh_count] = [day, first_axle_time, first_axle, axles_difference]
+        second_axle = convert_data_to_s(bound_arr[index+1])
+        prev_veh_first_axle = convert_data_to_s(bound_arr[index-2])
+        axles_diff = (second_axle - first_axle).round(2)
+
+        axles_diff_frm_prev_veh = (first_axle - prev_veh_first_axle).round(2)
+
+        bound_vehicles[veh_count] = [day, first_axle_time, first_axle, axles_diff, axles_diff_frm_prev_veh]
 
         veh_count += 1
       end
     end
     bound_vehicles
+    # binding.pry
   end
 
   private
@@ -46,8 +50,3 @@ class Sort#sort into days and first_axle pairs
 end
 
 # a = Sort.new("anything").into_pairs_by_day
-# binding.pry
-
-# for previous revisions
-# storing day, time for axle 1, data index, time for axle 2, next data index, difference between time and axle 1 data
-# per_vehicle_detail << day << first_axle_t << index << axle_two_t << index+1 << axle_diff << first_axle

@@ -15,52 +15,50 @@ class Attributes
     weekly_speed_results = {}
     velocity_sum = 0
     (1..num_days).each do |day|
-      subject_per_day = bound.select{ |_, data_value| data_value[0] == day }
-      subject_per_day.each do |key, value|
-        individual_veh_velocity = (avg_wheelbase_between_axles / value[3]).round(2)
+      subject_per_day = bound.select{ |_, hash_data| hash_data[0] == day }
+      subject_per_day.each do |_, values|
+        individual_veh_velocity = avg_wheelbase_between_axles / values[3]
         velocity_sum += individual_veh_velocity
-        velocities_stored_per_day << individual_veh_velocity
+        velocities_stored_per_day << individual_veh_velocity.round(2)
       end
       average_velocity = (velocity_sum / subject_per_day.count).round(2)
       weekly_speed_results[day] = {"m/s range" => "#{velocities_stored_per_day.min} - #{velocities_stored_per_day.max}", "m/s average" => "#{average_velocity}"}
     end
     weekly_speed_results
     binding.pry
+
   end
 
-  # def distance
-  #   weekly_distance_results = {}
+  def distance_apart
+    weekly_distance_results = {}
   #   periods_of_day = ["0,6","6,12","12,18","18,24"]
   #
   #
-  #   (1..num_days ).each do |day|
-  #     first_axles_arr = []
-  #     dist_arr = []
-  #     hour_distance_car = []
-  #
-  #     subject_per_day = bound.select{ |index, data_value| data_value[0] == day }
-  #
-  #     subject_per_day.each do |key, value|
-  #       dist_arr << [value[6], value[1].hour]
-  #     end
+    (1..num_days ).each do |day|
+      dist_arr = []
+      hour_distance_car = []
+
+      subject_per_day = bound.select{ |index, data_value| data_value[0] == day }
+      subject_per_day.each do |_, values|
+        # dist_arr << [values[4]
+        puts values[4]* traffic_speed_limit).round(2)
+      end
   #
   #     dist_arr.each_with_index do |line, index|
   #       hour_distance_car << ["Hour : #{line[1]}", "#{meters_in_between?((line[0] - dist_arr[index-1][0]))} meters" , "car number #{index+1}"]
   #     end
   #     weekly_distance_results[day] = hour_distance_car
   #
-  #   end
+    end
   #   binding.pry
-  # end
+  end
   private
 
   def which_bound?(nb_or_sb)
     nb_or_sb == "nb" ? Sort.new("nb").into_pairs_by_day : Sort.new("sb").into_pairs_by_day
   end
 
-  def meters_in_between?(time)
-    (time * traffic_speed_limit).round(2)
-  end
 end
 
-Attributes.new("sb").speed
+# Attributes.new("sb").speed
+Attributes.new("sb").distance_apart
