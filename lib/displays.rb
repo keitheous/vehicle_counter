@@ -4,79 +4,51 @@ require_relative 'sort'
 class Displays
   attr_reader :bound, :num_days, :minutes, :sections
 
-  def initialize(which_bound, minute_user_input)
-
+  def initialize(which_bound, minute_user_input = 20)
     valid_time_input?(minute_user_input)
-
-    if which_bound == "nb"
-      @bound = Sort.new("nb").into_pairs_by_day
-    elsif which_bound == "sb"
-      @bound = Sort.new("sb").into_pairs_by_day
-    end
-    binding.pry
-    @num_days = bound[bound.length][0]
-    # @num_days can be adjustable if this was scalable - choose how many days to display
+    @bound = which_bound?(which_bound)
     @minutes = minute_user_input
     @sections = 60 / minute_user_input
+    @num_days = bound[bound.length][0]
   end
 
   def by_time_section
-    results_stored_daily = {} #the ultimate result of this class
-    # stored_hourly = {}
+    sectioned_daily_results = {}
 
     (1..num_days).each do |day|
-      # puts "evaluating day #{day}"
-      # processing bound_subject one day at a time out of 5 days
-      daily_subject_hash = bound.select{|daily_key, daily_value| daily_value[0] == day}
+      daily_subject_hash = bound.select{|_, daily_value| daily_value[0] == day}
+      # filter by day, 1 to 5, process one day a time
+      sectioned_results = {}
 
-      hourly_results = {}
-      # do hourly first
-      (00..23).each do |hour| #assess every hourly between 00 to 24 hour
-        # puts "evaluating hour #{hour}"
+      (00..23).each do |hour| #filer by hour, process hourly between 0 to 24
+        frequency_arr = []
+        lower_limit = 0 #resets to every hour - lower sectioning
+        upper_limit = minutes- 1 #upper sectioning
+        by_the_hour = daily_subject_hash.select{|_, hourly_values| hourly_values[1].hour == hour}
+        (01..sections).each do |section| #split into the sections, process every minutely
+          by_the_hour.each do |index, values|
 
-        sectionly_frequency = []
-        lower_limit = 0 #resets every hour, the clock starts at 00 minutes - lower sectioning
-        upper_limit = minutes - 1 #upper sectioning
-        stored_hourly = daily_subject_hash.select{|hourly_key, hourly_value| hourly_value[1].hour == hour}
-
-        (01..sections).each do |section| #split the evaluation into the sections
-
-          stored_hourly.each do |key, value| #now assess every minutely
-
-            if value[1].hour == hour && value[1].min.between?(lower_limit,upper_limit)
-              sectionly_frequency << "#{key} -> #{value[1].hour}:#{value[1].min} falls in  #{value[1].hour}:#{lower_limit}"
-            end #end of if stament
-
-          end #end of minutely iteration
-          #store the count and store individually
-          # binding.pry
-          hourly_results["#{hour}:#{lower_limit}"] = sectionly_frequency.count
-          lower_limit += minutes    #increase the limits based on sections
-          upper_limit += minutes
-
-
-        end #end of sections iteration
-
-      end #end for hourly iteration
-
-      results_stored_daily[day] = hourly_results #temporary memory
-
-    end #end for daily iteration
-
-    results_stored_daily #returned result in form of HASH of section counts in DAYS
-    # binding.pry
-  end #end for method
+            frequency_arr << index if values[1].hour == hour && values[1].min.between?(lower_limit,upper_limit)
+          end
+          sectioned_results["#{hour}:#{lower_limit}"] = frequency_arr.count
+          lower_limit += minutes
+          upper_limit += minutes  #increase the limits on sections
+        end
+      end
+      sectioned_daily_results[day] = sectioned_results
+    end
+    sectioned_daily_results
+    binding.pry
+  end
 
   private
-
+  def which_bound?(bound)
+    bound == "nb" ? Sort.new("nb").into_pairs_by_day : Sort.new("sb").into_pairs_by_day
+  end
   def valid_time_input?(user_input)
     raise 'error' if (60 % user_input != 0 || user_input < 0)
   end
-  # end
-end #end of classs
+end
 
-Displays.new("nb",7).by_time_section
-# Display.new("sb",15).by_time_section
-# Display.new("sb",30).by_time_section
-# Display.new("sb",-6).by_time_section
-# Display.new("sb",7).by_time_section
+# Displays.new("nb").by_time_section
+# Displays.new("sb").by_time_section
