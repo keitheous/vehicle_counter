@@ -28,7 +28,7 @@ class Attributes
 
   end
 
-  def distance_apart (begin_hour, end_hour)
+  def distance_apart(begin_hour, end_hour)
     check_hour_validity?(begin_hour, end_hour)
     weekly_distance_results = {}
     (1..num_days).each do |day|
