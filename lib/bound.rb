@@ -27,3 +27,6 @@ class Bound
   end
 
 end
+
+# a = Bound.new
+# binding.pry
