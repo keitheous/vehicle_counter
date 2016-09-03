@@ -6,9 +6,10 @@ require "minitest/pride"
 class BoundTest < Minitest::Test
 
   attr_reader :nb_vehicles, :sb_vehicles
+  
   def setup
     @nb_vehicles = Bound.new.north
-    @sb_vehicles = Bound.new.north
+    @sb_vehicles = Bound.new.south
   end
 
   def test_initialization_of_dataset
@@ -39,7 +40,7 @@ class BoundTest < Minitest::Test
 
   def test_sb_vehicle_has_AA_patterns
     aa_patterns = nil
-    sb_vehicles.each { |line| aa_patterns = line[0] == "A"}
+    sb_vehicles.each { |line| aa_patterns = line[0] == "B"}
     assert_equal true, aa_patterns
   end
 

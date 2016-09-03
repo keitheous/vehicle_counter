@@ -43,5 +43,4 @@ class DisplaysTest < Minitest::Test
     assert_equal true, result_hash.size != 0
   end
 
-
 end
