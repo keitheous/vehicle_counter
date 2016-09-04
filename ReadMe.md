@@ -39,17 +39,17 @@ When the length of the miliseconds drop as such, its an indication of a new day 
 ### Objectives
 The city has asked for the data to be processed in order to obtain the following requirements for the five days across both lanes.
 
-| Vehicle Count Five Days  |
-| | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation |
-|---|---|---|---|
-|1.| per hour | per hour | 5 days|
-|2.| per 30min | per 30min | 5 days|
-|3.| per 20min | per 20min | 5 days|
-|4.| per 15min | per 15min | 5 days|
-|5.| peaks | peaks | 5 days - 3 peaks/day|
-|5.| AM vs PM | AM vs PM  | 5 days |
-| Vehicle Distribution |
-| | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation |
-|---|---|---|---|
-|6.| speed| speed | 5 days|
-|7.| distance apart | distance apart | 5 days - user's choice|
+|                  Vehicle Count Five Days                          |
+|  | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation |
+|--|-------------------------|:-----------------------:|-----------:|
+|1.| per hour                | per hour                | 5 days     |
+|2.| per 30min               | per 30min               | 5 days     |
+|3.| per 20min               | per 20min               | 5 days     |
+|4.| per 15min               | per 15min               | 5 days     |
+|5.| peaks - 3 peaks/day     | peaks - 3 peaks/day     | 5 days     |
+|5.| Morning VS Evening      | Morning VS Evening      | 5 days     |
+|                    Vehicle Distribution                           |
+|  | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation |
+|--|-------------------------|:-----------------------:|-----------:|
+|6.| speed range/ average    | speed range/ average    | 5 days     |
+|7.| distance user's choice  | distance user's choice  | 5 days     |
