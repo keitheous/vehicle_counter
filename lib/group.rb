@@ -43,3 +43,27 @@ class Group
     data_ms.delete('^0-9').strip.to_i / 1000.000
   end
 end
+
+# Thought Process:
+# ----------------
+# This class groups North OR South Bound in pairs, depending on the argument
+# that is passed into execution. Private method which_bound? determines this
+# with an IF ELSE statement.
+#
+# The array that is passed in will then be processed on line 22 for every
+# (index % 2 == 0) starting from 0-1, 2-3, 4-5 and etc. Private method
+# convert_data_to_s strips off the digits and divide them by 1000 to convert
+# miliseconds to seconds. Line 24 then converts this seconds into the H:M:S time
+# format.
+#
+# (day += 1 if bound_arr[index].length < bound_arr[index-1].length)
+# While all of this is running, Line 20's IF statement looks out for
+# any occurance of a new day where theres a drop in data.length. When this occur,
+# Day will increment. Index 0 is a new day because Index -1 (which is the last
+# element of the Array) has a longer length. This is then recorded in the hash.
+#
+# Other info such as time between two axles (Line 25), and time between current
+# car's first axle and previous car's first axle (Line26) was also kept in the
+# result to respectively obtain individual car speed and distance between cars.
+#
+# The result of this class is used in both distribution.rb and session.rb

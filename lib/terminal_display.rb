@@ -15,3 +15,7 @@ class Display
     end
   end
 end
+
+# Thought Process:
+# ----------------
+# Necessary to display all processed data in a universal and simple DAY : format

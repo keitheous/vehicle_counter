@@ -28,5 +28,15 @@ class Bound
 
 end
 
-# a = Bound.new
-# binding.pry
+# Thought Process:
+# ----------------
+# This class sorts lines of data into North and South Bound. For South Bound,
+# its all the lines that preceeds with the Letter B. North Bound on the other
+# hand is tricky as the As can either belong to North or South Bound.
+# The trick was to run through all the lines and locate for instances where "A"
+# happens twice in a row. Line 15 traces for with this following syntax.
+# all_vehicle_data[index][0] == all_vehicle_data[index + 1][0]
+# The current and future's first character must be the same (Letter A). This
+# immediately eliminates the ABAB patterns and selects all AA patterns from
+# North Bound. This class produces Arrays which then lead into Group.rb to be
+# set into pairs and hashes. 

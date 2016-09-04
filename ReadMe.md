@@ -36,10 +36,11 @@ B582789 -->
 
 When the length of the miliseconds drop as such, its an indication of a new day as the data is recorded from midnight.
 
-### Objectives
+### Objectives/Requirements
 The city has asked for the data to be processed in order to obtain the following requirements for the five days across both lanes.
 
-| Count / Distribution |
+ --- | ---| --- | ---
+| Count |
  --- | ---| --- | ---
      | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation
  --- | --- | --- | ---
@@ -49,7 +50,42 @@ The city has asked for the data to be processed in order to obtain the following
   4. | per 15min               | per 15min               | 5 days     
   5. | peaks - 3 peaks/day     | peaks - 3 peaks/day     | 5 days     
   6. | Morning VS Evening      | Morning VS Evening      | 5 days     
-     | North Bound (AA Sensor)  | South Bound (AB Sensor) | Limitation
+ --- | ---| --- | ---
+| Distribution |                            
+ --- | --- | ---| ---
+    | North Bound (AA Sensor)  | South Bound (AB Sensor) | Limitation
  --- | --- | --- |---
   7. | speed range/ average    | speed range/ average    | 5 days     
-  8. | distance user's choice  | distance user's choice  | 5 days     
+  8. | distance user's choice  | distance user's choice  | 5 days    
+
+  **Essential Information**
+  1. Only 2-axle vehicles are allowed on these lanes. The average wheelbase of the vehicles passing through both lanes are 2.5meters between axles. This information is crucial to determine the rough speed distribution of the cars.
+
+  image 3
+
+  2. The speed limit on the road is 60kph. However, this does not mean that everyone drives at this speed. From this piece of information, the rough distance between cars can be obtained from the following formula.
+
+  image 4
+
+## Approach
+
+It was challenging to solve this problem with an object oriented design approach when dealing with such a large quantity of raw data. There was the option to treat each entry (in pairs) as an object. However, it would be difficult to achieve the requirements stated above as the displays would be across 5 days on both lanes. As a result, I decided to treat the hashes and arrays as objects instead. These hashes and arrays contain the processed data from the Classes and their functions, each with its own purpose. Below is the class diagram break down and flow.
+image
+                                       -> distribution.rb
+data_source.rb -> bound.rb -> group.rb -> session.rb
+                                              |
+                                              v
+                                            count.rb
+data_source reads the source
+bound splits data to north and south bound - AA or ABAB pattern
+group splits north & south bound into pairs - processed in pairs
+sessions allow vehicle counts to be displayed in 60mins , 30mins, 20mins and 15mins periods
+
+distribution is to determine speed and distance apart - grouped together for similar design
+
+count to determine peaks and compare mornings to evenings
+
+terminal display displays the processed data in universal format - by day
+
+
+## Solution
