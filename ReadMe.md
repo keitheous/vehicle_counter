@@ -39,7 +39,7 @@ When the length of the miliseconds drop as such, its an indication of a new day 
 ### Objectives
 The city has asked for the data to be processed in order to obtain the following requirements for the five days across both lanes.
 
-| Count |
+| Count / Distribution |
  --- | ---| --- | ---
      | North Bound (AA Sensor) | South Bound (AB Sensor) | Limitation
  --- | --- | --- | ---
@@ -49,10 +49,7 @@ The city has asked for the data to be processed in order to obtain the following
   4. | per 15min               | per 15min               | 5 days     
   5. | peaks - 3 peaks/day     | peaks - 3 peaks/day     | 5 days     
   6. | Morning VS Evening      | Morning VS Evening      | 5 days     
- --- | ---| --- | ---
-| Distribution |                           
- --- | --- | ---| ---
-    | North Bound (AA Sensor)  | South Bound (AB Sensor) | Limitation
+     | North Bound (AA Sensor)  | South Bound (AB Sensor) | Limitation
  --- | --- | --- |---
   7. | speed range/ average    | speed range/ average    | 5 days     
   8. | distance user's choice  | distance user's choice  | 5 days     
