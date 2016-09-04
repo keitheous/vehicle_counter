@@ -3,7 +3,7 @@
 ## Problem
 A small city government recently installed pneumatic sensors that counts vehicles across two traffic lanes.
 
-![North Bound - South Bound](./images/NBSB.png)
+![North Bound - South Bound](./images/NBSB_road.png)
 
 The first pneumatic rubber hose (sensor A) stretches across both lanes of traffic (North and South Bound) while the second (sensor B), on one lane (South Bound). The sensors were left to run for 5 days in a row.
 
@@ -69,7 +69,7 @@ __Vehicle Distribution__
 
 It was challenging to solve this problem with an object oriented design approach when dealing with such a large quantity of raw data. There was the option to treat each entry (in pairs) as an object. However, it would be difficult to achieve the requirements stated above as the displays would be across 5 days on both lanes. As a result, I decided to treat the hashes and arrays as objects instead. These hashes and arrays contain the processed data from the Classes and their functions, each with its own purpose. Below is the class diagram break down and flow.
 
-![Class Diagram / Flow](./images/classflowdiagram.png)
+![Class Diagram / Flow](./images/classdiagram.png)
 
   * data_source reads the source
   * bound splits data to north and south bound - AA or ABAB pattern
