@@ -3,7 +3,9 @@
 require_relative './lib/displays'
 # require_relative 'lib/test'
 require_relative './lib/test'
-a = Person.new("Keith")
+
+a = Displays.new("nb",60)
+puts a.sort_sections
 binding.pry
 #
 # def run_analysis(bound)
