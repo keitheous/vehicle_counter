@@ -1,0 +1,21 @@
+require_relative 'session'
+require_relative 'count'
+
+class Display
+
+  attr_reader :object_to_display
+  def initialize(data)
+    @object_to_display = data
+  end
+
+  def in_terminal
+    object_to_display.each do |day, hourly_data|
+      puts "Day number #{day}:"
+      puts hourly_data
+    end
+  end
+end
+
+# a = Count.new("nb").determine_peaks
+object = Count.new("nb").compare_morning_evening
+Display.new(object).count_in_terminal

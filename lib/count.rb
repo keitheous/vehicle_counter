@@ -16,7 +16,7 @@ class Count
       single_peak = []
       weekly_data[day].each { |_, value| data_per_day  << value }
       peak_times_amount.times do
-        single_peak << "Hour: #{data_per_day.index(data_per_day.max)} with #{data_per_day.max} vehicles"
+        single_peak << "Peak Hour #{data_per_day.index(data_per_day.max)} with #{data_per_day.max} vehicles"
         data_per_day.delete(data_per_day.max)
       end
       weekly_peaks[day] = single_peak
@@ -35,7 +35,7 @@ class Count
         # 6am to 12pm & 6pm to 12am
         (6...12).each { |hour| morning_veh_count += value["#{hour}:0"] }
         (18..23).each { |hour| evening_veh_count += value["#{hour}:0"] }
-        weekly_comparison[day] = {"morning"=> morning_veh_count , "evening" => evening_veh_count }
+        weekly_comparison[day] = {"morning 6am-12pm"=> morning_veh_count , "evening 6pm-12am" => evening_veh_count }
       end
     end
     weekly_comparison
