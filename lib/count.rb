@@ -50,3 +50,13 @@ class Count
     raise 'error' if amount < 0
   end
 end
+
+# Thought Process:
+# ----------------
+# For the morning and evening comparison i have decided to limit morning hours
+# to run between 6am to 12pm because 12am - 12pm and 6pm - 12 am isnt worth comparing.
+# Also this would be about practicality. People drive to work and back home within
+# these hours.
+
+# a peak time is determined using array.max (Line 19), after obtaining this data,
+# array.delete (Line 20) is used to obtain the next peak time.
