@@ -67,13 +67,9 @@ __Vehicle Distribution__
 
 It was challenging to solve this problem with an object oriented design approach when dealing with such a large quantity of raw data. There was the option to treat each entry (in pairs) as an object. However, it would be difficult to achieve the requirements stated above as the displays would be across 5 days on both lanes. As a result, I decided to treat the hashes and arrays as objects instead. These hashes and arrays contain the processed data from the Classes and their functions, each with its own purpose. Below is the class diagram break down and flow.
 
-
-                                  -> distribution.rb -----
-                                  |                       |
-data_source.rb -> bound.rb -> group.rb -> session.rb --------> terminal_display.rb
-      |                                        |          |
-      |                                        v          |
-    data.txt                                 count.rb -----
+                                       -> distribution.rb         ->terminal_display.rb
+data.txt -> data_source.rb -> bound.rb -> group.rb  -> session.rb ->terminal_display.rb
+                                                    -> count.rb   ->terminal_display.rb
 
   * data_source reads the source
   * bound splits data to north and south bound - AA or ABAB pattern
