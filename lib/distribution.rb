@@ -1,5 +1,5 @@
 require 'pry'
-require_relative 'sort'
+require_relative 'group'
 
 class Distribution
 
@@ -56,7 +56,7 @@ class Distribution
   private
 
   def which_bound?(nb_or_sb)
-    nb_or_sb == "nb" ? Sort.new("nb").into_pairs_by_day : Sort.new("sb").into_pairs_by_day
+    nb_or_sb == "nb" ? Group.new("nb").into_pairs_by_day : Group.new("sb").into_pairs_by_day
   end
 
   def check_hour_validity?(begin_hour, end_hour)

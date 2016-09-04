@@ -1,7 +1,7 @@
 require 'pry'
-require_relative 'displays'
+require_relative 'session'
 
-class Times
+class Count
   attr_reader :weekly_data
 
   def initialize(bound = "nb")
@@ -43,7 +43,7 @@ class Times
 
   private
   def which_bound?(bound)
-    bound == "nb" ? Displays.new("nb").sort_sections : Displays.new("sb").sort_sections
+    bound == "nb" ? Session.new("nb").sort_sections : Session.new("sb").sort_sections
   end
 
   def quantity_valid_input(amount)

@@ -2,7 +2,7 @@ require 'pry'
 require_relative 'bound'
 require 'time'
 
-class Sort
+class Group
   attr_reader :bound_arr
 
   def initialize(bound)

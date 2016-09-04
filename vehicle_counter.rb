@@ -1,7 +1,7 @@
 require 'pry'
 require_relative './lib/distribution'
-require_relative './lib/displays'
-require_relative './lib/times'
+require_relative './lib/session'
+require_relative './lib/count'
 require_relative './lib/test'
 
 #
@@ -15,28 +15,28 @@ def run_analysis(bound)
     puts "Weekly Vechile Counts/Analysis for #{bound}"
     puts "(1) per Hour / (2) per 30 minutes / (3) per 20 minutes / (4) per 15 minutes /"
     puts "(5) in the Morning (6am-12pm) vs. Evening (6pm-12am) / (6) peak hours "
-    puts "(7) rough speed distribution / (8) rough distance between cars"
+    puts "(7) per hourly speed distribution / (8) per hourly distance between cars"
     puts "(q) Exit"
     input = gets.chomp
     case input
     when "1"
-      puts Displays.new(bound,60).sort_sections
+      puts Session.new(bound,60).sort_sections
     when "2"
-      puts Displays.new(bound,30).sort_sections
+      puts Session.new(bound,30).sort_sections
     when "3"
-      puts Displays.new(bound,20).sort_sections
+      puts Session.new(bound,20).sort_sections
     when "4"
-      puts Displays.new(bound,15).sort_sections
+      puts Session.new(bound,15).sort_sections
     when "5"
-      puts Times.new(bound).compare_morning_evening
+      puts Count.new(bound).compare_morning_evening
     when "6"
-      puts Times.new(bound).determine_peaks
+      puts Count.new(bound).determine_peaks
     when "7"
       puts Distribution.new(bound).determine_speed
     when "8"
-      puts "from what time?"
+      puts "from hour? (0 - 23)"
       begin_hour = gets.chomp
-      puts "to what time?"
+      puts "to hour? (0 - 23)"
       end_hour = gets.chomp
       puts Distribution.new(bound).determine_distance_apart(begin_hour.to_i, end_hour.to_i)
     end

@@ -1,7 +1,7 @@
 require 'pry'
-require_relative 'sort'
+require_relative 'group'
 
-class Displays
+class Session
   attr_reader :bound, :num_days, :minutes, :sections
 
   def initialize(which_bound ="nb", minute_user_input = 60)
@@ -37,7 +37,7 @@ class Displays
 
   private
   def which_bound?(bound)
-    bound == "nb" ? Sort.new("nb").into_pairs_by_day : Sort.new("sb").into_pairs_by_day
+    bound == "nb" ? Group.new("nb").into_pairs_by_day : Group.new("sb").into_pairs_by_day
   end
   def valid_time_input?(user_input)
     raise 'error' if (60 % user_input != 0 || user_input < 0)
