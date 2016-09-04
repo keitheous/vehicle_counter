@@ -4,13 +4,9 @@ require_relative './lib/session'
 require_relative './lib/count'
 require_relative './lib/terminal_display'
 
-#
-# Distribution
-# binding.pry
-
 def run_analysis(bound)
-  puts "======================="
   begin
+    puts "======================="
     puts "Please select the following options:"
     puts "Weekly Vechile Counts/Analysis for #{bound}"
     puts "(1) per Hour / (2) per 30 minutes / (3) per 20 minutes / (4) per 15 minutes /"
@@ -18,6 +14,7 @@ def run_analysis(bound)
     puts "(7) per hourly speed distribution / (8) per hourly distance between cars"
     puts "(q) Exit"
     input = gets.chomp
+    puts "======================="
     case input
     when "1"
       object = Session.new(bound,60).sort_sections
@@ -49,13 +46,13 @@ def run_analysis(bound)
       Display.new(object).in_terminal
     end
   end while input!= "q"
+  puts "Thank you!"
 end
-
+puts "======================="
 puts "Hello! Please pick a bound to be analysed."
 puts "1. North Bound"
 puts "2. South Bound"
 choice_bound = gets.chomp
-puts "======================="
 if choice_bound.downcase == "north bound" || choice_bound == "1"
   puts "Analysing North Bound :"
   run_analysis("nb")

@@ -1,14 +1,14 @@
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
-require_relative '../lib/sort'
+require_relative '../lib/group'
 require "minitest/pride"
 
-class SortTest < Minitest::Test
+class GroupTest < Minitest::Test
 
   attr_reader :sort_object
-  
+
   def setup
-    @sort_object = Sort.new("sb")
+    @sort_object = Group.new("sb")
   end
 
   def test_population_of_class_init
