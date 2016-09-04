@@ -1,9 +1,9 @@
 # require 'pry'
 # require_relative 'lib/times'
-require_relative 'lib/displays'
+require_relative './lib/displays'
 # require_relative 'lib/test'
-# require_relative 'lib/test'
-a = Displays.new("nb",60)
+require_relative './lib/test'
+a = Person.new("Keith")
 binding.pry
 #
 # def run_analysis(bound)

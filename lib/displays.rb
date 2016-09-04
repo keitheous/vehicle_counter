@@ -1,6 +1,6 @@
 require 'pry'
 require_relative 'sort'
-Displays.new(bound,"").sort_sections
+
 class Displays
   attr_reader :bound, :num_days, :minutes, :sections
 
