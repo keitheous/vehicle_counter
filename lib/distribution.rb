@@ -1,8 +1,8 @@
 require 'pry'
 require_relative 'sort'
 
-class Attributes
-  
+class Distribution
+
   TRAFFIC_SPEED_LIMIT = 60 * 0.277 #convert kph to ms
   AVG_WHEELBASE_BETWEEN_AXLES = 2.5 #metres
 
@@ -13,7 +13,7 @@ class Attributes
     @num_days = bound[bound.count][0]
   end
 
-  def speed
+  def determine_speed
     velocities_stored_per_day = []
     weekly_speed_results = {}
     velocity_sum = 0
@@ -30,7 +30,7 @@ class Attributes
     weekly_speed_results
   end
 
-  def distance_apart(begin_hour, end_hour)
+  def determine_distance_apart(begin_hour, end_hour)
     check_hour_validity?(begin_hour, end_hour)
     distance_results = {}
     (1..num_days).each do |day|

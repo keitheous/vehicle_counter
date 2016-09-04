@@ -1,47 +1,59 @@
-# require 'pry'
-# require_relative 'lib/times'
+require 'pry'
+require_relative './lib/distribution'
 require_relative './lib/displays'
-# require_relative 'lib/test'
+require_relative './lib/times'
 require_relative './lib/test'
 
-a = Displays.new("nb",60)
-puts a.sort_sections
-binding.pry
 #
-# def run_analysis(bound)
-#   begin
-#     puts "Please select the following options:"
-#     puts "1. Vehicle Count per Hour"
-#     puts "2. Vehicle Count per 30 minutes"
-#     puts "3. Vehicle Count per 20 minutes"
-#     puts "4. Vehicle Count per 15 minutes"
-#     input = gets.chomp
-#     case input
-#     when "1"
-#       a = Displays.new(bound,"60").sort_sections
-#       puts a.size
-#     when "2"
-#       puts Displays.new(bound,"30").sort_sections
-#     when "3"
-#       puts Displays.new(bound,"20").sort_sections
-#     when "4"
-#       puts Displays.new(bound,"15").sort_sections
-#     else
-#       "invalid choice"
-#     end
-#   end while input!="q"
-# end
-#
-# puts "Hello! Please pick a bound to be analysed."
-# puts "1. North Bound"
-# puts "2. South Bound"
-# choice_bound = gets.chomp
-# if choice_bound.downcase == "north bound" || choice_bound == "1"
-#   puts "Analysing North Bound :"
-#   run_analysis("nb")
-# elsif choice_bound.downcase == "south bound" || choice_bound == "2"
-#   puts "Analysing South Bound :"
-#   run_analysis("sb")
-# else
-#   "invalid choice - try again"
-# end
+# Distribution
+# binding.pry
+
+def run_analysis(bound)
+  puts "======================="
+  begin
+    puts "Please select the following options:"
+    puts "Weekly Vechile Counts/Analysis for #{bound}"
+    puts "(1) per Hour / (2) per 30 minutes / (3) per 20 minutes / (4) per 15 minutes /"
+    puts "(5) in the Morning (6am-12pm) vs. Evening (6pm-12am) / (6) peak hours "
+    puts "(7) rough speed distribution / (8) rough distance between cars"
+    puts "(q) Exit"
+    input = gets.chomp
+    case input
+    when "1"
+      puts Displays.new(bound,60).sort_sections
+    when "2"
+      puts Displays.new(bound,30).sort_sections
+    when "3"
+      puts Displays.new(bound,20).sort_sections
+    when "4"
+      puts Displays.new(bound,15).sort_sections
+    when "5"
+      puts Times.new(bound).compare_morning_evening
+    when "6"
+      puts Times.new(bound).determine_peaks
+    when "7"
+      puts Distribution.new(bound).determine_speed
+    when "8"
+      puts "from what time?"
+      begin_hour = gets.chomp
+      puts "to what time?"
+      end_hour = gets.chomp
+      puts Distribution.new(bound).determine_distance_apart(begin_hour.to_i, end_hour.to_i)
+    end
+  end while input!= "q"
+end
+
+puts "Hello! Please pick a bound to be analysed."
+puts "1. North Bound"
+puts "2. South Bound"
+choice_bound = gets.chomp
+puts "======================="
+if choice_bound.downcase == "north bound" || choice_bound == "1"
+  puts "Analysing North Bound :"
+  run_analysis("nb")
+elsif choice_bound.downcase == "south bound" || choice_bound == "2"
+  puts "Analysing South Bound :"
+  run_analysis("sb")
+else
+  puts "invalid choice - try again"
+end
