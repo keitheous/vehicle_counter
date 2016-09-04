@@ -2,7 +2,7 @@ require 'pry'
 require_relative './lib/distribution'
 require_relative './lib/session'
 require_relative './lib/count'
-require_relative './lib/test'
+require_relative './lib/terminal_display'
 
 #
 # Distribution
@@ -20,25 +20,33 @@ def run_analysis(bound)
     input = gets.chomp
     case input
     when "1"
-      puts Session.new(bound,60).sort_sections
+      object = Session.new(bound,60).sort_sections
+      Display.new(object).in_terminal
     when "2"
-      puts Session.new(bound,30).sort_sections
+      object = Session.new(bound,30).sort_sections
+      Display.new(object).in_terminal
     when "3"
-      puts Session.new(bound,20).sort_sections
+      object = Session.new(bound,20).sort_sections
+      Display.new(object).in_terminal
     when "4"
-      puts Session.new(bound,15).sort_sections
+      object = Session.new(bound,15).sort_sections
+      Display.new(object).in_terminal
     when "5"
-      puts Count.new(bound).compare_morning_evening
+      object = Count.new(bound).compare_morning_evening
+      Display.new(object).in_terminal
     when "6"
-      puts Count.new(bound).determine_peaks
+      object = Count.new(bound).determine_peaks
+      Display.new(object).in_terminal
     when "7"
-      puts Distribution.new(bound).determine_speed
+      object = Distribution.new(bound).determine_speed
+      Display.new(object).in_terminal
     when "8"
       puts "from hour? (0 - 23)"
       begin_hour = gets.chomp
       puts "to hour? (0 - 23)"
       end_hour = gets.chomp
-      puts Distribution.new(bound).determine_distance_apart(begin_hour.to_i, end_hour.to_i)
+      object = Distribution.new(bound).determine_distance_apart(begin_hour.to_i, end_hour.to_i)
+      Display.new(object).in_terminal
     end
   end while input!= "q"
 end

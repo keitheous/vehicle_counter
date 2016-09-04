@@ -15,7 +15,3 @@ class Display
     end
   end
 end
-
-# a = Count.new("nb").determine_peaks
-object = Count.new("nb").compare_morning_evening
-Display.new(object).count_in_terminal
