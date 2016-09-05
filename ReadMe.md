@@ -99,7 +99,9 @@ The main menu lets users choose the bound you wish to be processed. After select
 ![Other options with regards to selected bound](./images/Step 2.png)
 
 Users can hit 'q' to quit. With Option number (8), Rough distance distribution **across various periods** are grouped per hour. Therefore, the when prompted to provide 'from hour' and 'to hour', users should provide 15 to 23 if they wish to view traffic distribution between 3pm to 12am.
+
 ![Option 8](./images/Step 3.png)
+
 ![data group by hour](./images/Step 4.png)
 
 Lastly, if the user would like to process a new data set with a similar structure, all they need to do is to include the data set in the /data directory and change the path specified in data_source.rb (Line 4)
