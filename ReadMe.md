@@ -92,15 +92,15 @@ Please refer into the individual class files located in the lib file for the tho
 
 In the main directory, run "ruby vehicle_counter.rb" in the command line. Follow the options provided.
 
-![Main Menu - North or South Bound](./images/Step1.png)
+![Main Menu - North or South Bound](./images/Step 1.png)
 
 The main menu lets users choose the bound you wish to be processed. After selecting one, a second menu follows. Users can now choose to view the vehicle counts in specific time frames, compare vehicle counts between morning and evening, determine the speed and distance distribution of the traffic.
 
-![Other options with regards to selected bound](./images/Step2.png)
+![Other options with regards to selected bound](./images/Step 2.png)
 
 Users can hit 'q' to quit. With Option number (8), Rough distance distribution **across various periods** are grouped per hour. Therefore, the when prompted to provide 'from hour' and 'to hour', users should provide 15 to 23 if they wish to view traffic distribution between 3pm to 12am.
-![Option 8](./images/Step3.png)
-![data group by hour](./images/Step4.png)
+![Option 8](./images/Step 3.png)
+![data group by hour](./images/Step 4.png)
 
 Lastly, if the user would like to process a new data set with a similar structure, all they need to do is to include the data set in the /data directory and change the path specified in data_source.rb (Line 4)
 
