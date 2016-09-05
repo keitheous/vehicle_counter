@@ -82,7 +82,7 @@ __second stage:__
   * count.rb to determine peaks and compare mornings to evenings - grouped together for similar design
 
 __final stage:__
-  * terminal display displays the processed data in universal format - per day
+  * terminal_display.rb displays the processed data in universal format - per day
 
 ## Solutions
 
