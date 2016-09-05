@@ -18,4 +18,4 @@ end
 
 # Thought Process:
 # ----------------
-# Necessary to display all processed data in a universal and simple DAY : format
+# Necessary to display all processed data in a universal and simple by-DAY : format
