@@ -21,7 +21,7 @@ From the raw data provided, a line consist of two parts; the sensor (A or B) and
 
 Take for example a fraction of the raw data here, the first two lines indicate a vehicle's first axle passing through sensor A (North Bound) 98.186 seconds past midnight. The second line which follows shortly after, at 98.333s, is the second axle of the same vehicle. When converted to a more familiar time format (hour:minute:second), both axles were recorded at 00:01:38, with just a slight difference in mili-seconds (0.147ms). All vehicles passing through sensor A would have an AA format in two consecutive lines.
 
-Since Sensor A stretches across both lanes and Sensor B only on one lane, vehicles travelling on the South Bound would be recorded with an ABAB format in four lines. Hence, line 5 to 8 indicate one vehicle travelling down . The first axle occurred at B638382 while the second at B638523, 10 minutes and 38 seconds pass midnight with a few mili-seconds apart.
+Since Sensor A stretches across both lanes and Sensor B only on one lane, vehicles travelling on the South Bound would be recorded with an ABAB format in four lines. Hence, line 5 to 8 indicate one vehicle passing through South Bound. The first axle occurred at B638382 while the second at B638523, 10 minutes and 38 seconds pass midnight with a few mili-seconds apart.
 
 - A86328771
 - B86328774
